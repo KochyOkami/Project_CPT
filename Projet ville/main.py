@@ -104,7 +104,7 @@ class Main():
         self.w_map = Entry(self.seed_frame, textvariable=self.v_w_map, width = 9)
         
         self.t_language = Label(self.seed_frame, text = self.settings["language"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
-        self.language = ttk.Combobox(self.seed_frame, values=["Français", "English"], state="readonly")
+        self.language = ttk.Combobox(self.seed_frame, values=["Français", "English", "Русский"], state="readonly")
         self.language.current(self.current_lang())
         self.language.bind("<<ComboboxSelected>>", self.forget)
 
@@ -141,6 +141,8 @@ class Main():
             return 0
         elif self.lang_config == "en":
             return 1
+        elif self.lang_config == "ru":
+            return 2
         
     def show(self):
         """Draw all component on the different frame."""
@@ -187,7 +189,7 @@ class Main():
         self.language.grid(row = 6, column = 1)
         self.t_debug_mode.grid(row = 7, column = 0, sticky = W)
         self.c_debug_mode.grid(row = 7, column = 1)
-        self.t_octaves.grid(row = 8, column = 0)
+        self.t_octaves.grid(row = 8, column = 0, sticky = W)
         self.octaves.grid(row = 8, column = 1)
        
         #Draw the button
@@ -202,6 +204,8 @@ class Main():
             self.lang_config = "fr"
         elif lang == "English":
             self.lang_config = "en"
+        elif lang == "Русский":
+            self.lang_config = "ru"
         
         self.main_frame.grid_forget()
         
