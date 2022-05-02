@@ -95,13 +95,24 @@ class Quartier:
             if line[0] != 90:
                 #print("l", line)
                 for i in range(line[1]):
+                          
+                    self.tu.up()
+                    part_x = self.width//line[1]
+                    part_y = self.height//(nb)
+                    
+                    pos = (self.min[0] + (part_x * i) + s, self.min[1]+ (part_y* line[0]) + s)
+                    
+                    w_house = part_x- s*2
+                    h_house = part_y - s*2
+                    border_x =(2*pos[0] - w_house)/ ra.uniform(1.2, 2.0)
+                    border_y =(2*pos[1] -h_house) /ra.uniform(1.2, 2.0)
                     
                     if self.density == "low":
                         i = ra.randint(0,2)
                         j = ra.randint(0,30)
                         if i == 0:
                             pen_color = (206,230,214)
-                            state = 2
+                            state = 0
                         
                         elif j == 0:
                             pen_color = (0,100, ra.randint(200, 250))
@@ -115,7 +126,7 @@ class Quartier:
                         i = ra.randint(0,5)
                         if i == 0:
                             pen_color = (206,230,214)
-                            state = 2
+                            state = 0
                         else:
                             pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + 5), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + 5), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + 5))
                             state = 1
@@ -124,29 +135,13 @@ class Quartier:
                         i = ra.randint(0,10)
                         if i == 0:
                             pen_color = (206,230,214)
-                            state = 2
+                            state = 0
                         else:
                             pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + 5), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + 5), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + 5))
                             state = 1
                            
-                           
-                    self.tu.up()
-                    part_x = self.width//line[1]
-                    part_y = self.height//(nb)
-                    
-                    if state == 2:
-                        pos = (self.min[0] + (part_x * i), self.min[1]+ (part_y* line[0]))
-                        
-                        w_house = part_x
-                        h_house = part_y
-                        
-                    else:
-                        pos = (self.min[0] + (part_x * i) + s, self.min[1]+ (part_y* line[0]) + s)
-                        
-                        w_house = part_x- s*2
-                        h_house = part_y - s*2
-                        border_x =(2*pos[0] - w_house)/ ra.uniform(1.2, 2.0)
-                        border_y =(2*pos[1] -h_house) /ra.uniform(1.2, 2.0)
+                     
+            
             
                     ##print(i, "pos :", pos)
                     self.tu.goto(pos[0] , pos[1])
