@@ -1,0 +1,31 @@
+{
+"settings_window_name" : "генератор карты",\
+
+"main_frame_name" : "настройки",\
+
+"color_frame_name" : "выбор цветов",\
+"color_lane_marking" : "разметка полосы движения",\
+"color_road" : "дорога",\
+"color_text" : "текст",\
+"color_house" : "дом",\
+"color_background" : "задний план",\
+
+"size_frame_name" : "выбор размера",\
+"size_lane_marking" : "разметка полосы движения",\
+"size_road" : "дорога",\
+"width_map" : "широта карты",\
+"height_map" : "высота карты",\
+
+"advanced_settings_frame_name" : "продвинутые настройки",\
+"seed_key" : "ключ",\
+"size_chunk" : "размер кусков",\
+"width" : "широта",\
+"height" : "высота",\
+"show_perlin_noise" : "паказывать шум перлина",\
+"save" : "сохранять",\
+"debug_mode" : "режим отладки",\
+"octaves" : "октавы",\
+"drawn" : "нарисованный",\
+"language" : "язык"
+
+}
