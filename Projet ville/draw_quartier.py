@@ -108,7 +108,7 @@ class Quartier:
                             state = 0
                         else:
                             p = 5
-                            pen_color =  (ra.randint(int(c_house[0]), int(c_house[0]) + p), ra.randint(int(c_house[1]), int(c_house[1]) + p), ra.randint(int(c_house[2]), int(c_house[2]) + p))
+                            pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + p), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + p), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + p))
                             state = 1
                             
                     elif self.density == "middle":
@@ -117,7 +117,7 @@ class Quartier:
                             pen_color = (206,230,214)
                             state = 2
                         else:
-                            pen_color =  (ra.randint(int(c_house[0]), int(c_house[0]) + 5), ra.randint(int(c_house[1]), int(c_house[1]) + 5), ra.randint(int(c_house[2]), int(c_house[2]) + 5))
+                            pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + 5), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + 5), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + 5))
                             state = 1
                       
                     else:
@@ -126,7 +126,7 @@ class Quartier:
                             pen_color = (206,230,214)
                             state = 2
                         else:
-                            pen_color =  (ra.randint(int(c_house[0]), int(c_house[0]) + 5), ra.randint(int(c_house[1]), int(c_house[1]) + 5), ra.randint(int(c_house[2]), int(c_house[2]) + 5))
+                            pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + 5), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + 5), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + 5))
                             state = 1
                            
                            
