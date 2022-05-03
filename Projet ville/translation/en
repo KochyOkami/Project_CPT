@@ -10,6 +10,10 @@
 "color_house" : "House",\
 "color_background" : "Background",\
 
+"chose_color" : "color",\
+"chose_color_0" : "light",\
+"chose_color_1" : "dark",\
+
 "size_frame_name" : "Size choices",\
 "size_lane_marking" : "Lane marking",\
 "size_road" : "Road",\

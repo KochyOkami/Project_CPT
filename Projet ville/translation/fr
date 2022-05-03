@@ -12,6 +12,10 @@
 "color_house" : "Maison",\
 "color_background" : "Fond",\
 
+"chose_color" : "couleur",\
+"chose_color_0" : "claire",\
+"chose_color_1" : "sombre",\
+
 "size_frame_name" : "Choix des tailles",\
 "size_lane_marking" : "Lignes des routes",\
 "size_road" : "Routes",\

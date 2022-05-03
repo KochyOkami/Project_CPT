@@ -108,7 +108,11 @@ class Main():
         self.language.current(self.current_lang())
         self.language.bind("<<ComboboxSelected>>", self.forget)
 
-
+        self.t_chose_color = Label(self.seed_frame, text = self.settings["chose_color"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.chose_color = ttk.Combobox(self.seed_frame, values=[self.settings["chose_color_0"], self.settings["chose_color_1"]], state="readonly")
+        self.chose_color.current(self.current_lang())
+        self.chose_color.bind("<<ComboboxSelected>>", self.forget)
+        
         self.v_s_perlin = IntVar()
         self.t_s_perlin = Label(self.seed_frame, text = self.settings["show_perlin_noise"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
         self.c_s_perlin = Checkbutton(self.seed_frame, text = "", variable = self.v_s_perlin, bd = 0, \
@@ -278,6 +282,7 @@ class Main():
             "show_noise" : self.v_s_perlin.get(),\
             "debug_mode" : self.debug_mode.get(),\
             "octaves" : self.octaves.get(),\
+            "chose_color" : self.chose_color,\
             "save" : int(self.v_save.get())
             }
         
@@ -291,4 +296,5 @@ run = True
 while run:
     #update the screen while True
     main.update()
+    
     

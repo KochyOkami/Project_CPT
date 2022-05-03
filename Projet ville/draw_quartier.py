@@ -76,10 +76,15 @@ class Quartier:
         self.tu.width(2)
         self.tu.goto(x,y)
         self.tu.fillcolor(self.c_bg)
-        if ra.randint(0,3) >= 1:
-            self.tu.pencolor("black")
+        if self.density == "low":
+            if ra.randint(0,3) >= 1:
+                self.tu.pencolor("black")
+            else:
+                self.tu.pencolor(self.c_bg)
+                
         else:
-            self.tu.pencolor(self.c_bg)
+            self.tu.pencolor("black")
+            
         self.tu.down()
         self.tu.begin_fill()
         for u in range(2):
@@ -90,7 +95,7 @@ class Quartier:
         self.tu.end_fill()
        
         
-    def draw_house(self, pen_width, pen_color):
+    def draw_house(self, pen_width, color):
         nb = len(self.liste)
         
         for line in self.liste:
@@ -111,37 +116,36 @@ class Quartier:
                         j = ra.randint(0,30)
                         if i == 0:
                             #Draw a garden
-                            pen_color = (206,230,214)
-                            state = "garden"
+                            color = (206,230,214)
+                            pen_color = color
+
                         
-                        elif j == 0:
-                            #Drax water
-                            pen_color = (0,100, ra.randint(200, 250))
-                            state = "water"
+                            
                         else:
-                            p = 5
-                            pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + p), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + p), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + p))
-                            state = "house"
+                            #Draw house
+                            color =  self.c_house
+                            pen_color = (color[0] - 20, color[1] -20, color[2] -20)
                             
                     elif self.density == "middle":
                         i = ra.randint(0,5)
                         if i == 0:
-                            pen_color = (206,230,214)
-                            state = "garden_city"
+                            #Draw garden
+                            color = (206,230,214)
+                            pen_color = color
+
                         else:
-                            pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + 5), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + 5), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + 5))
-                            state = "house"
+                            color = self.c_house
+                            pen_color = (color[0] - 20, color[1] -20, color[2] -20)
                       
                     else:
                         i = ra.randint(0,10)
                         if i == 0:
-                            pen_color = (206,230,214)
-                            state = "garden_city"
+                            color = (206,230,214)
+                            pen_color = color
+
                         else:
-                            pen_color =  (ra.randint(int(self.c_house[0]), int(self.c_house[0]) + 5), ra.randint(int(self.c_house[1]), int(self.c_house[1]) + 5), ra.randint(int(self.c_house[2]), int(self.c_house[2]) + 5))
-                            state = "house"
-                           
-                     
+                            color =  self.c_house
+                            pen_color = (color[0] - 20, color[1] -20, color[2] -20)
             
             
                     ##print(i, "pos :", pos)
@@ -152,32 +156,29 @@ class Quartier:
 
                     from preset_house import Preset
                     
-                    if state == "house" or state == "garden_city":
-                        if ra.randint(0,3) != 0:
-                            a = Preset(self.screen, self.seed, pos[0] + s, pos[1] + s, part_x - 2*s, part_y-2*s, pen_color)
-                            del(a)
-                        else:
-                            state = not state
-                            
-                    if state == "garden":
-                        self.tu.goto(pos[0] - 1, pos[1] - 1)
-                        self.tu.width(1)
-                        self.tu.pencolor(pen_color)
-                        self.tu.width(1)
-                        self.tu.fillcolor(pen_color)
-                        self.tu.down()
-                        self.tu.begin_fill()
-                        self.tu.seth(90)
-                        for _ in range(2):
-                            
-                            self.tu.forward(part_x +1)
-                            self.tu.right(90)
-                            self.tu.forward(part_y + 1)
-                            self.tu.right(90)
-                        self.tu.end_fill()
-                
-        
-    def draw_road(self,pen_width, pen_color):
+
+                    a = Preset(self.screen, self.seed, pos[0] + s, pos[1] + s, part_x - 2*s, part_y-2*s, color, pen_color)
+#                     del(a)
+#                         
+#                     else:
+#                         self.tu.goto(pos[0] - 1, pos[1] - 1)
+#                         self.tu.width(1)
+#                         self.tu.pencolor(color)
+#                         self.tu.width(1)
+#                         self.tu.fillcolor(color)
+#                         self.tu.down()
+#                         self.tu.begin_fill()
+#                         self.tu.seth(90)
+#                         for _ in range(2):
+#                             
+#                             self.tu.forward(part_x +1)
+#                             self.tu.right(90)
+#                             self.tu.forward(part_y + 1)
+#                             self.tu.right(90)
+#                         self.tu.end_fill()
+#                 
+#         
+    def draw_road(self,pen_width, color):
         
         nb = len(self.liste)
         ##print("nb road :", nb)
@@ -185,7 +186,7 @@ class Quartier:
             for line in self.liste:
                 if line[0] != 0:
                     self.tu.up()
-                    self.tu.pencolor(pen_color)
+                    self.tu.pencolor(color)
                     self.tu.width(pen_width)
                     self.tu.goto(self.min[0] ,self.min[1] + (self.height/nb) *line[0])
                     self.tu.down()
@@ -196,7 +197,7 @@ class Quartier:
                 for number in range(line[1]):
                     if number != line[1]-1:
                         self.tu.up()
-                        self.tu.pencolor(pen_color)
+                        self.tu.pencolor(color)
                         self.tu.width(pen_width)
                         self.tu.goto(self.min[0] + (self.width/line[1]) * (number + 1), self.min[1] + (self.height/nb) * line[0])
                         self.tu.down()
@@ -206,7 +207,7 @@ class Quartier:
             for line in self.liste:
                 if line[0] != 0:
                     self.tu.up()
-                    self.tu.pencolor(pen_color)
+                    self.tu.pencolor(color)
                     self.tu.width(pen_width)
                     self.tu.goto(self.min[0], self.min[1] + (self.height/nb) *line[0])
                     s = 0
@@ -222,7 +223,7 @@ class Quartier:
                 for number in range(line[1]):
                     if number != line[1]-1:
                         self.tu.up()
-                        self.tu.pencolor(pen_color)
+                        self.tu.pencolor(color)
                         self.tu.width(pen_width)
                         self.tu.goto(self.min[0] + (self.width/line[1]) * (number + 1),self.min[1] + (self.height/nb) * line[0])
                         s = 0

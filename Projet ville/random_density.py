@@ -37,7 +37,7 @@ class Generate_town:
         #create the window
         map = tkinter.Tk()
         map.title("Carte " + str(self.seed))
-     #   map.iconbitmap("img/logo/logo.ico")
+        map.iconbitmap("img/logo/logo.ico")
         map.geometry(str(settings["width_map"]) + "x" + str(settings["height_map"]))
         
         #Create the canvas for draw all compnantes
@@ -206,6 +206,7 @@ class Generate_town:
             self.tu.pencolor(self.c_text)
             self.tu.write(vile,True, align="left", font=self.style)
             self.tu.up()
+            self.tu.hideturtle()
             
         
     def squar(self, x, y, color,s):

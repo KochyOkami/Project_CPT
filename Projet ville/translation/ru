@@ -10,6 +10,10 @@
 "color_house" : "дом",\
 "color_background" : "задний план",\
 
+"chose_color" : "color",\
+"chose_color_0" : "light",\
+"chose_color_1" : "dark",\
+
 "size_frame_name" : "выбор размера",\
 "size_lane_marking" : "разметка полосы движения",\
 "size_road" : "дорога",\
