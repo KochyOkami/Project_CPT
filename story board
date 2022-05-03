@@ -40,17 +40,14 @@ Presentation:
 Bonjour nous sommes éléves de premiere générale à l'institut Stanislas Cannes 
 en specialité NSI. Je suis Sasha, Je suis Andrew et moi Artiom.  
 
-Le theme de notre projet de NSI est "Créé une ville imaginaire". Cepeandant le sujet est assez vaste et autorise tout types de plans architecturaux 
+Le theme de notre projet de NSI est "Créé une ville imaginaire".
 Il s’agit de créer avec un programme un plan, en vision aérienne en utilisant le module Turtle de Python. 
-La création du plan doit aussi comporter une part d’aléatoire. 
 
-L'étendu du sujet nous a permis de laisser libre cours à notre imagination. Nous sommes ainsi partie sur l'idée de recréer le plan d'une ville. 
-Pour cela nous sommes demandé quelles en sont les caractèristiques. Ainsi nous avons reduit le plan d'une ville à 3 éléments principaux.
+L'étendu du sujet nous a permis de laisser libre cours à notre imagination.
+Nous avons reduit le plan d'une ville à 3 éléments principaux.
 Des routes, divert formes d'habitations/batiments ainsi que des espaces verts.
 
-Ensuite nous avons encore reduit le plan d'une ville à un simple quadrillage et nous avons créé une premiere version qui comportait un quadrillage principale 
-délimitant plusieurs zones representant differents quartiers. Chaque quartier étant connstitué lui même un quadrillage a l'interieur du quel etait 
-représenté differents batiments.
+Nous avons ainsi re n premier prototype tres simplifié. 
 
 Ayant une base solide, nous avons chercher à rendre le plan moins régulier et liniaire afin d'avoir un rendu plus proche de la réalité.
 Pour cela nous nous sommes intéréssés au bruit de perlin pour simuler une densité variable. Le bruit de perlin etant une texture procedurale 
