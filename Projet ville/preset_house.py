@@ -14,7 +14,10 @@ class Preset:
         self.screen.delay(0)
         ra.seed(seed)
         
-        self.a(init_x, init_y, x, y, color)
+        if ra.randint(0,1):
+            self.a(init_x, init_y, x, y, color)
+        else:
+            self.b(init_x, init_y, x, y, color)
         
     def a(self, init_x, init_y, x, y, color):
         orientation = ra.randint(0,2)
@@ -74,9 +77,60 @@ class Preset:
             
             
         self.tu.end_fill()
-
-   
-#for i in range(-2,2):
-#    for j in range(-2,2):
-#        a(i*100,j*100,80,80,"orange")
-#tu.mainloop()
+    def b(self, init_x, init_y, x, y, color):
+        orientation = 0
+        n = ra.randint(10,30)/100
+        m = ra.randint(10,30)/100
+        p = ra.randint(10,30)/100
+        q = ra.randint(10,30)/100
+            
+        self.tu.up()
+        self.tu.width(1)
+        self.tu.pencolor((223,223,221))
+        self.tu.fillcolor(color)
+        self.tu.begin_fill()
+        self.tu.seth(0)
+        
+        if not orientation:
+            self.tu.goto(init_x, init_y)
+            self.tu.fd(x)
+            self.tu.left(90)
+            self.tu.fd(y*n)
+            self.tu.left(90)
+            self.tu.fd(x)
+            self.tu.left(90)
+            self.tu.fd(y*n)
+            self.tu.end_fill()
+            self.tu.up()
+            
+            self.tu.goto(init_x + (x - (x*p))/2, init_y + y*n)
+            self.tu.down()
+            self.tu.begin_fill()
+            self.tu.left(90)
+            self.tu.fd(y*m)
+            self.tu.right(90)
+            self.tu.fd(x*p)
+            self.tu.right(90)
+            self.tu.fd(y*m)
+            self.tu.right(90)
+            self.tu.fd(x*p)
+            self.tu.end_fill()
+            self.tu.up()
+            
+            self.tu.goto(init_x + ((x - (x*p))/2) + ((x -(x*q))/2), init_y + y*n + y*m)
+            self.tu.down()
+            self.tu.begin_fill()
+            self.tu.fd(x*q)
+            self.tu.left(90)
+            self.tu.fd(y-y*n-y*m)
+            self.tu.left(90)
+            self.tu.fd(x*q)
+            self.tu.left(90)
+            self.tu.fd(y-y*n-y*m)
+            self.tu.end_fill()
+            
+#       
+# for i in range(-2,2):
+#     for j in range(-2,2):
+#         at.b(i*100,j*100,80,80,"orange")
+# tu.mainloop()
