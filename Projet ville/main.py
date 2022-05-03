@@ -195,6 +195,8 @@ class Main():
         self.c_debug_mode.grid(row = 7, column = 1)
         self.t_octaves.grid(row = 8, column = 0, sticky = W)
         self.octaves.grid(row = 8, column = 1)
+        self.t_chose_color.grid(row = 9, column = 0, sticky = W)
+        self.chose_color.grid(row = 9, column = 0)
        
         #Draw the button
         self.button.grid(row = 3, column = 6)
