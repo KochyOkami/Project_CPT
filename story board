@@ -47,15 +47,14 @@ L'étendu du sujet nous a permis de laisser libre cours à notre imagination.
 Nous avons reduit le plan d'une ville à 3 éléments principaux.
 Des routes, divert formes d'habitations/batiments ainsi que des espaces verts.
 
-Nous avons ainsi re n premier prototype tres simplifié. 
+Nous avons ainsi réalisé un premier prototype tres simplifié. 
 
-Ayant une base solide, nous avons chercher à rendre le plan moins régulier et liniaire afin d'avoir un rendu plus proche de la réalité.
-Pour cela nous nous sommes intéréssés au bruit de perlin pour simuler une densité variable. Le bruit de perlin etant une texture procedurale 
-pseudo-aleatoire permetant d'ameliorer le realisme de la génération d'image.
-Ainsi nous avons obtenu ce résultat, des espaces verts ont aussi été ajoutés
+Ayant une base solide, nous avons chercher à rendre le plan moins régulié.
+Pour cela nous nous sommes intéréssés au bruit de perlin pour simuler une densité variable. 
+Ainsi nous avons obtenu ce résultat, dans lequel nous générons des quartiers de differentes densité selon le bruit de perlin.
 
 Pour finalisé le projet nous avons développé une interface afin de pouvoir parametrer la génération de la carte. Des noms de villes 
-choisis aléatoiremlent au niveau des centre ville ont été ajoué.
+choisis aléatoiremlent au niveau des centre ville ont aussi été ajouté.
 
 Ce projet nous a permis de développer de nombreuses competences telle que le travail en équipe, l'oragisations collective et de nouvelles notions en
 programations notament avec le bruit de perlin. 
