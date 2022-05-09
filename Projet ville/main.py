@@ -8,23 +8,91 @@ class Main():
     def __init__(self):
         """Initialisation the main window. """
         
+        self.main_window = Tk()
+        self._main_window.iconbitmap("img/logo/logo.ico")
+        
         self.window = Tk()
         self.window.iconbitmap("img/logo/logo.ico")
         self.lang_config = "en"
+        
+        self.padx, self.pady = 10, 10
+        
         self.setting()
             
             
     def setting(self):
         '''Create all the settings variables.'''
         
-        #Open the file with the translation for the all the text
+        #Open the file with the translation for the all the text.
         with open("translation/" + str(self.lang_config),"r", encoding='utf-8')as fichier:
             self.settings = eval(fichier.read())
             
+        #Open the file with the color panel for the map and the window.
+        with open("color/" + srt(self.color_settings), "r", encoding="utf-8") as fichier:
+            self.color_settings = eval(fichier.read())
+            
+        
+        #Settings for the main window.
+        self.window.title(self.settings["settings_window_name"])
+        self.window["bg"] = self.color["settings_bg"]
+        
+        self.main_frame = Frame(self.window, padx=self.padx, pady=self.pady)
+        
+        #-------------------- Size of window for the map --------------------
+        self.window_size = LabelFrame(self.main_frame, text=self.settings["window_size"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
+        
+        #Height window
+        self.t_window_h = Label(self.window_size, text = self.settings["window_height"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.v_window_h = IntVar()
+        self.v_window_h.set(500)
+        self.window_h = Entry(self.window_size, textvariable=self.v_window_h, width = 9)
+        
+        #Width window
+        self.t_window_w = Label(self.window_size, text = self.settings["window_width"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.v_window_w = IntVar()
+        self.v_window_w.set(800)
+        self.window_w = Entry(self.window_size, textvariable=self.v_window_w, width = 9)
+        
+        #-------------------- Size of the map --------------------
+        self.map_size = LabelFrame(self.main_frame, text=self.settings["map_size"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
+        
+        #Height map
+        self.t_map_h = Label(self.map_size, text = self.settings["map_height"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.v_map_h = IntVar()
+        self.v_map_h.set(500)
+        self.map_h = Entry(self.map_size, textvariable=self.v_map_h, width = 9)
+        
+        #Width map
+        self.t_map_w = Label(self.map_size, text = self.settings["map_width"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.v_map_w = IntVar()
+        self.v_map_w.set(800)
+        self.map_w = Entry(self.map_size, textvariable=self.v_map_w, width = 9)
+        
+        
+        #-------------------- Color frame --------------------
+        self.color_frame = LabelFrame(self.main_frame, text=self.settings["color_frame_name"], padx=self.padx, pay=self.pady, bg=self.color["settings_bg"])
+        
+        #Select color pannel
+        self.t_color_panel = Label(self.color_frame, text = self.settings["chose_color"] + ': ', padx=self.padx, pady=self.pady, bg = self.color["settings_bg"])
+        self.color_panel = ttk.Combobox(self.color_frame, values=[self.settings["chose_color_0"], self.settings["chose_color_1"]], state="readonly")
+        self.color_panel.current(self.current_color())
+        self.color_panel.bind("<<ComboboxSelected>>", self.forget)
+        
+        #-------------------- language frame --------------------
+        self.lang_frame = LabelFrame(self.main_frame, text=self.settings["chose_lang"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
+        
+        #Select the language
+        self.t_language = Label(self.lang_frame, text=self.settings["language"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.language = ttk.Combobox(self.seed_frame, values=["Français", "English", "Русский"], state="readonly")
+        self.language.current(self.current_lang())
+        self.language.bind("<<ComboboxSelected>>", self.forget)
+        
+        #--------------------
+        
         #Settings of the settings window
         self.window.title(self.settings["settings_window_name"])
         self.color = "grey"
-        self.padx, self.pady = 10, 10
+
         self.window['bg'] = self.color
         self.main_frame = LabelFrame(self.window, text=self.settings["main_frame_name"], padx=self.padx, pady=self.pady, bg = self.color)
       
@@ -69,7 +137,7 @@ class Main():
         self.v_s_road.set(6)
         self.s_road = Entry(self.size_frame, textvariable=self.v_s_road, width = 9)
         
-        self.t_width = Label(self.size_frame, text = self.settings["width_map"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.t_width = Label(self.size_frame, text = self.settings["widtmap_h"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
         self.v_width = IntVar()
         self.v_width.set(1000)
         self.width = Entry(self.size_frame, textvariable=self.v_width, width = 9)
@@ -93,15 +161,15 @@ class Main():
         self.v_s_chunk.set(50)
         self.s_chunk = Entry(self.seed_frame, textvariable=self.v_s_chunk, width = 9)
         
-        self.t_h_map = Label(self.seed_frame, text = self.settings["height"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
-        self.v_h_map = IntVar()
-        self.v_h_map.set(500)
-        self.h_map = Entry(self.seed_frame, textvariable=self.v_h_map, width = 9)
+        self.t_map_h = Label(self.seed_frame, text = self.settings["height"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.v_map_h = IntVar()
+        self.v_map_h.set(500)
+        self.map_h = Entry(self.seed_frame, textvariable=self.v_map_h, width = 9)
         
-        self.t_w_map = Label(self.seed_frame, text = self.settings["width"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
-        self.v_w_map = IntVar()
-        self.v_w_map.set(800)
-        self.w_map = Entry(self.seed_frame, textvariable=self.v_w_map, width = 9)
+        self.t_map_w = Label(self.seed_frame, text = self.settings["width"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
+        self.v_map_w = IntVar()
+        self.v_map_w.set(800)
+        self.map_w = Entry(self.seed_frame, textvariable=self.v_map_w, width = 9)
         
         self.t_language = Label(self.seed_frame, text = self.settings["language"] + ': ', padx=self.padx, pady=self.pady, bg = self.color)
         self.language = ttk.Combobox(self.seed_frame, values=["Français", "English", "Русский"], state="readonly")
@@ -148,59 +216,72 @@ class Main():
         elif self.lang_config == "ru":
             return 2
         
+     def current_color(self):
+        #Return the color of the window
+        if self.lang_config == "dark":
+            return 0
+        elif self.lang_config == "light":
+            return 1
+
+        
     def show(self):
         """Draw all component on the different frame."""
-
+        
         self.main_frame.grid(row = 0, column = 0)
         
-        #Draw settings for the color
-        self.color_frame.grid(row = 0, column = 0, sticky = W, padx = self.padx, pady = self.pady)
-        self.t_c_line.grid(row = 0, column = 0, sticky = W)
-        self.c_line.grid(row = 0, column = 1)
-        self.t_c_road.grid(row = 1, column = 0, sticky = W)
-        self.c_road.grid(row = 1, column = 1) 
-        self.t_c_text.grid(row = 2, column = 0, sticky = W)
-        self.c_text.grid(row = 2, column = 1)  
-        self.t_c_house.grid(row = 3,column = 0, sticky = W)
-        self.c_house.grid(row = 3, column = 1)  
-         
-        #Draw settings for the size
-        self.size_frame.grid(row = 0, column = 1, padx = self.padx, pady = self.pady)
-        self.t_width.grid(row = 0, column = 0, sticky = W)
-        self.width.grid(row = 0, column = 1)
-        self.t_height.grid(row = 1, column = 0, sticky = W)
-        self.height.grid(row = 1, column = 1)
-        self.t_s_line.grid(row = 2, column = 0, sticky = W)
-        self.s_line.grid(row = 2, column = 1)
-        self.t_s_road.grid(row = 3, column = 0, sticky = W)
-        self.s_road.grid(row = 3, column = 1)
-        
-        #Draw the other settings
-        self.seed_frame.grid(row = 1, column = 0, padx = self.padx, pady = self.pady, sticky = W)
-        self.t_seed.grid(row = 0, column = 0, sticky = W)
-        self.seed.grid(row = 0, column = 1)
-        self.t_s_chunk.grid(row = 1, column = 0, sticky = W)
-        self.s_chunk.grid(row = 1, column = 1)
-        self.t_h_map.grid(row = 3, column = 0, sticky = W)
-        self.h_map.grid(row = 3, column = 1)
-        self.t_w_map.grid(row = 2, column = 0, sticky = W)
-        self.w_map.grid(row = 2, column = 1)
-        self.t_s_perlin.grid(row = 4, column = 0, sticky = W)
-        self.c_s_perlin.grid(row = 4, column = 1)
-        self.t_save.grid(row = 5, column = 0, sticky = W)
-        self.c_save.grid(row = 5, column = 1)
-        self.t_language.grid(row = 6, column = 0, sticky = W)
-        self.language.grid(row = 6, column = 1)
-        self.t_debug_mode.grid(row = 7, column = 0, sticky = W)
-        self.c_debug_mode.grid(row = 7, column = 1)
-        self.t_octaves.grid(row = 8, column = 0, sticky = W)
-        self.octaves.grid(row = 8, column = 1)
-        self.t_chose_color.grid(row = 9, column = 0, sticky = W)
-        self.chose_color.grid(row = 9, column = 0)
-       
-        #Draw the button
-        self.button.grid(row = 3, column = 6)
-        
+        self.map_size.grid(row = 0, column = 0, sticky = W, padx = self.padx, pady = self.pady)
+        self.t_map_size.grid(row = 0, column = 0, sticky = W)
+        self.c_map_size.grid(row = 0, column = 1)
+#         self.main_frame.grid(row = 0, column = 0)
+#         
+#         #Draw settings for the color
+#         self.color_frame.grid(row = 0, column = 0, sticky = W, padx = self.padx, pady = self.pady)
+#         self.t_c_line.grid(row = 0, column = 0, sticky = W)
+#         self.c_line.grid(row = 0, column = 1)
+#         self.t_c_road.grid(row = 1, column = 0, sticky = W)
+#         self.c_road.grid(row = 1, column = 1) 
+#         self.t_c_text.grid(row = 2, column = 0, sticky = W)
+#         self.c_text.grid(row = 2, column = 1)  
+#         self.t_c_house.grid(row = 3,column = 0, sticky = W)
+#         self.c_house.grid(row = 3, column = 1)  
+#          
+#         #Draw settings for the size
+#         self.size_frame.grid(row = 0, column = 1, padx = self.padx, pady = self.pady)
+#         self.t_width.grid(row = 0, column = 0, sticky = W)
+#         self.width.grid(row = 0, column = 1)
+#         self.t_height.grid(row = 1, column = 0, sticky = W)
+#         self.height.grid(row = 1, column = 1)
+#         self.t_s_line.grid(row = 2, column = 0, sticky = W)
+#         self.s_line.grid(row = 2, column = 1)
+#         self.t_s_road.grid(row = 3, column = 0, sticky = W)
+#         self.s_road.grid(row = 3, column = 1)
+#         
+#         #Draw the other settings
+#         self.seed_frame.grid(row = 1, column = 0, padx = self.padx, pady = self.pady, sticky = W)
+#         self.t_seed.grid(row = 0, column = 0, sticky = W)
+#         self.seed.grid(row = 0, column = 1)
+#         self.t_s_chunk.grid(row = 1, column = 0, sticky = W)
+#         self.s_chunk.grid(row = 1, column = 1)
+#         self.t_map_h.grid(row = 3, column = 0, sticky = W)
+#         self.map_h.grid(row = 3, column = 1)
+#         self.t_map_w.grid(row = 2, column = 0, sticky = W)
+#         self.map_w.grid(row = 2, column = 1)
+#         self.t_s_perlin.grid(row = 4, column = 0, sticky = W)
+#         self.c_s_perlin.grid(row = 4, column = 1)
+#         self.t_save.grid(row = 5, column = 0, sticky = W)
+#         self.c_save.grid(row = 5, column = 1)
+#         self.t_language.grid(row = 6, column = 0, sticky = W)
+#         self.language.grid(row = 6, column = 1)
+#         self.t_debug_mode.grid(row = 7, column = 0, sticky = W)
+#         self.c_debug_mode.grid(row = 7, column = 1)
+#         self.t_octaves.grid(row = 8, column = 0, sticky = W)
+#         self.octaves.grid(row = 8, column = 1)
+#         self.t_chose_color.grid(row = 9, column = 0, sticky = W)
+#         self.chose_color.grid(row = 9, column = 0)
+#        
+#         #Draw the button
+#         self.button.grid(row = 3, column = 6)
+#         
         
     def forget(self, a):
         '''Undraw all text for change the language.'''
@@ -213,40 +294,40 @@ class Main():
         elif lang == "Русский":
             self.lang_config = "ru"
         
-        self.main_frame.grid_forget()
-        
-        #color
-        self.color_frame.grid_forget()
-        self.t_c_line.grid_forget()
-        self.t_c_road.grid_forget()
-        self.t_c_text.grid_forget()
-        self.t_c_house.grid_forget()
-         
-        #size
-        self.size_frame.grid_forget()
-        self.t_width.grid_forget()
-        self.t_height.grid_forget()
-        self.t_s_line.grid_forget()
-        self.t_s_road.grid_forget()
-        
-        #other
-        self.seed_frame.grid_forget()
-        self.t_seed.grid_forget()
-        self.t_s_chunk.grid_forget()
-        self.t_h_map.grid_forget()
-        self.t_w_map.grid_forget()
-        self.t_s_perlin.grid_forget()
-        self.t_save.grid_forget()
-        self.t_language.grid_forget()
-        self.t_debug_mode.grid_forget()
-        self.t_octaves.grid_forget()
-
-        #button
-        self.button.grid_forget()
-        
-        self.setting()
-        self.update()
-        
+#         self.main_frame.grid_forget()
+#         
+#         #color
+#         self.color_frame.grid_forget()
+#         self.t_c_line.grid_forget()
+#         self.t_c_road.grid_forget()
+#         self.t_c_text.grid_forget()
+#         self.t_c_house.grid_forget()
+#          
+#         #size
+#         self.size_frame.grid_forget()
+#         self.t_width.grid_forget()
+#         self.t_height.grid_forget()
+#         self.t_s_line.grid_forget()
+#         self.t_s_road.grid_forget()
+#         
+#         #other
+#         self.seed_frame.grid_forget()
+#         self.t_seed.grid_forget()
+#         self.t_s_chunk.grid_forget()
+#         self.t_map_h.grid_forget()
+#         self.t_map_w.grid_forget()
+#         self.t_s_perlin.grid_forget()
+#         self.t_save.grid_forget()
+#         self.t_language.grid_forget()
+#         self.t_debug_mode.grid_forget()
+#         self.t_octaves.grid_forget()
+# 
+#         #button
+#         self.button.grid_forget()
+#         
+#         self.setting()
+#         self.update()
+#         
 
     def update(self):
         """Update the screen, redraw all sprites. """
@@ -270,8 +351,8 @@ class Main():
         self.settings = {
             "width" : int(self.width.get()),\
             "height" : int(self.height.get()),\
-            "width_map" : int(self.w_map.get()),\
-            "height_map" : int(self.h_map.get()),\
+            "widtmap_h" : int(self.map_w.get()),\
+            "height_map" : int(self.map_h.get()),\
             "size_chunk" : int(self.s_chunk.get()),\
             "seed" : int(self.seed.get()),\
             "color_bg" : eval(self.c_bg.get()),\
@@ -289,7 +370,7 @@ class Main():
             }
         
         #Call the class Generate_town for draw the map
-        self.draw_map = Generate_town(self.settings)
+        self.dramap_w = Generate_town(self.settings)
 
 #Initialise the object Main()
 main = Main()
