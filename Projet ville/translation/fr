@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+
+{
+"settings_window_name" : "Générateur de cartes",\
+
+"main_frame_name" : "Paramètres généraux",\
+
+"color_frame_name" : "Choix des couleurs",\
+"color_lane_marking" : "Lignes des routes",\
+"color_road" : "Routes",\
+"color_text" : "Texte",\
+"color_house" : "Maison",\
+"color_background" : "Fond",\
+
+"chose_color" : "couleur",\
+"chose_color_0" : "claire",\
+"chose_color_1" : "sombre",\
+
+"size_frame_name" : "Choix des tailles",\
+"size_lane_marking" : "Lignes des routes",\
+"size_road" : "Routes",\
+"width_map" : "Largeur de la carte",\
+"height_map" : "Longueur de la carte",\
+
+"advanced_settings_frame_name" : "Paramètres avancés",\
+"seed_key" : "Clé",\
+"size_chunk" : "Taille des zones",\
+"width" : "Largeur",\
+"height" : "Longueur",\
+"show_perlin_noise" : "Voir le bruit de perlin",\
+"save" : "Sauvegarder",\
+"debug_mode" : "Mode débeguage",\
+"octaves" : "Octaves",\
+"drawn" : "Dessiner",\
+"language" : "Langues"
+
+}
