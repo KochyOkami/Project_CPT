@@ -9,16 +9,16 @@ class Main():
         """Initialisation the main window. """
         
         self.window = Tk()
-       # self.window.iconbitmap("img/logo/logo.ico")
+        self.window.iconbitmap("img/logo/logo.ico")
         self.lang_config = "en"
         self.color_config = "light"
         
         self.padx, self.pady = 10, 10
         
-        self.setting()
+        self.initialise()
             
             
-    def setting(self):
+    def initialise(self):
         '''Create all the settings variables.'''
         
         #Open the file with the translation for the all the text.
@@ -35,6 +35,7 @@ class Main():
         self.window["bg"] = self.color["settings_bg"]
         
         self.main_frame = Frame(self.window, padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
+        self.second_frame = Frame(self.window, padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
         
         #-------------------- Size of window for the map --------------------
         self.window_size = LabelFrame(self.main_frame, text=self.settings["window_size"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
@@ -67,7 +68,7 @@ class Main():
         self.map_w = Entry(self.map_size, textvariable=self.v_map_w, width = 9)
         
         #-------------------- Color frame --------------------
-        self.color_frame = LabelFrame(self.main_frame, text=self.settings["color_frame_name"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
+        self.color_frame = LabelFrame(self.second_frame, text=self.settings["color_frame_name"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
         
         #Select color pannel
         self.t_color_panel = Label(self.color_frame, text = self.settings["chose_color"] + ': ', padx=self.padx, pady=self.pady, bg = self.color["settings_bg"])
@@ -76,7 +77,7 @@ class Main():
         self.color_panel.bind("<<ComboboxSelected>>", self.forget)
         
         #-------------------- language frame --------------------
-        self.lang_frame = LabelFrame(self.main_frame, text=self.settings["lang_frame_name"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
+        self.lang_frame = LabelFrame(self.second_frame, text=self.settings["lang_frame_name"], padx=self.padx, pady=self.pady, bg=self.color["settings_bg"])
         
         #Select the language
         self.t_language = Label(self.lang_frame, text=self.settings["language"] + ': ', padx=self.padx, pady=self.pady, bg = self.color["settings_bg"])
@@ -96,9 +97,9 @@ class Main():
         
     def current_color(self):
         #Return the color of the window
-        if self.lang_config == "dark":
+        if self.color_config == "light":
             return 0
-        elif self.lang_config == "light":
+        elif self.color_config == "dark":
             return 1
 
         
@@ -106,6 +107,7 @@ class Main():
         """Draw all component on the different frame."""
         
         self.main_frame.grid(row = 0, column = 0)
+        self.second_frame.grid(row = 1, column = 0)
         
         self.map_size.grid(row = 0, column = 0, sticky = W, padx = self.padx, pady = self.pady)
         self.t_map_h.grid(row = 1, column = 0, sticky = W)
@@ -119,6 +121,14 @@ class Main():
         self.t_window_w.grid(row = 0, column = 0, sticky = W)
         self.window_w.grid(row = 0, column = 1)
         
+        self.color_frame.grid(row = 1, column = 0, sticky = W, padx = self.padx, pady = self.pady)
+        self.t_color_panel.grid(row = 0, column = 0, sticky = W)
+        self.color_panel.grid(row = 0, column = 1)
+        
+        self.lang_frame.grid(row = 2, column = 0, sticky = W, padx = self.padx, pady = self.pady)
+        self.t_language.grid(row = 0, column = 0, sticky = W)
+        self.language.grid(row = 0, column = 1)
+        
     def forget(self, a):
         '''Undraw all text for change the language.'''
         
@@ -129,6 +139,19 @@ class Main():
             self.lang_config = "en"
         elif lang == "Русский":
             self.lang_config = "ru"
+            
+        color = self.color_panel.get()
+        if color == "light":
+            self.color_config = "light"
+        elif color == "dark":
+            self.color_config = "dark"
+            
+        self.main_frame.grid_forget()
+        self.second_frame.grid_forget()
+        
+        self.initialise()
+        self.show()
+        
    
 
     def update(self):
@@ -136,9 +159,6 @@ class Main():
         
         self.show()
         self.window.update()
-        
-        self.lang_config= self.language.get()
-        self.setting
     
     def create_map(self):
         """ Call the fonction for create the main frame."""

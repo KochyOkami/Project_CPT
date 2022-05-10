@@ -1,37 +1,21 @@
-# -*- coding: utf-8 -*-
-
 {
-"settings_window_name" : "Générateur de cartes",\
 
-"main_frame_name" : "Paramètres généraux",\
+"settings_window_name" : "Paramètres Généraux",\
 
-"color_frame_name" : "Choix des couleurs",\
-"color_lane_marking" : "Lignes des routes",\
-"color_road" : "Routes",\
-"color_text" : "Texte",\
-"color_house" : "Maison",\
-"color_background" : "Fond",\
+"window_size" : "Taille de la fenétre",\
+"window_height" : "Height",\
+"window_width" : "Width",\
 
-"chose_color" : "couleur",\
-"chose_color_0" : "claire",\
-"chose_color_1" : "sombre",\
+"map_size" : "Map Size",\
+"map_height" : "Height",\
+"map_width" : "Width",\
 
-"size_frame_name" : "Choix des tailles",\
-"size_lane_marking" : "Lignes des routes",\
-"size_road" : "Routes",\
-"width_map" : "Largeur de la carte",\
-"height_map" : "Longueur de la carte",\
+"color_frame_name" : "Color Panel",\
+"chose_color" : "Color panel",\
+"chose_color_0" : "light",\
+"chose_color_1" : "dark",\
 
-"advanced_settings_frame_name" : "Paramètres avancés",\
-"seed_key" : "Clé",\
-"size_chunk" : "Taille des zones",\
-"width" : "Largeur",\
-"height" : "Longueur",\
-"show_perlin_noise" : "Voir le bruit de perlin",\
-"save" : "Sauvegarder",\
-"debug_mode" : "Mode débeguage",\
-"octaves" : "Octaves",\
-"drawn" : "Dessiner",\
-"language" : "Langues"
+"lang_frame_name" : "Language",\
+"language" : "Language",\
 
 }
