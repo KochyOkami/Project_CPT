@@ -1,0 +1,51 @@
+{
+
+"settings_window_name" : "Paramètres Généraux",\
+
+"window_size" : "Taille de la fenétre",\
+"window_height" : "Hauteur",\
+"window_width" : "Largeur",\
+
+"map_size" : "Tail de la carte",\
+"map_height" : "Hauteur",\
+"map_width" : "Largeur",\
+
+"color_frame_name" : "Choix des couleurs",\
+"chose_color" : "Palette de couleurs",\
+"chose_color_0" : "Realiste",\
+"chose_color_1" : "Google map",\
+
+"lang_frame_name" : "Choix des langues",\
+"language" : "Langue",\
+
+"advanced_settings" : "Paramètres avancé",\
+"draw" : "dessiner",\
+
+"main_frame_name" : "Main frame",\
+
+"color_lane_marking" : "Couleur de lignes",\
+"color_road" : "Routes",\
+"color_text" : "Text",\
+"color_house" : "Maison",\
+"color_garden" : "Garden",\
+"color_background" : "Fond",\
+
+"size_frame_name" : "Taille",\
+"size_lane_marking" : "Lignes",\
+"size_road" : "Routes",\
+"size_text" : "Taille du text",\
+
+"advanced_settings_frame_name" : "Paramètres avancé",\
+"seed_key" : "Graine",\
+"size_chunk" : "Taille des chunk",\
+"show_perlin_noise" : "Voir le bruit de Perlin",\
+"debug_mode" : "Debug mode",\
+"octaves" : "Octaves",\
+
+
+
+
+
+
+
+}
