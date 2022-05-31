@@ -2,7 +2,7 @@ import lib.turtle as tu
 import lib.random as ra
 
 class Preset:
-    def __init__(self, screen, seed, init_x, init_y, x, y, color, pen_color):
+    def __init__(self, screen, seed, init_x, init_y, x, y, color, pen_color, nb):
         
         #initialise turtle
         self.screen = screen
@@ -11,7 +11,7 @@ class Preset:
         self.tu.speed(0)
         self.tu.hideturtle()
         self.screen.delay(0)
-        ra.seed(seed)
+        ra.seed(seed + nb)
         
         if ra.randint(0,1):
             self.a(init_x, init_y, x, y, color, pen_color)

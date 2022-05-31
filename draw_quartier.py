@@ -1,5 +1,6 @@
 import lib.random as ra
 import lib.tkinter
+from preset_house import Preset
 
 
 class Quartier:
@@ -142,30 +143,12 @@ class Quartier:
                     # print(i, "pos :", pos)
                     self.tu.goto(pos[0], pos[1])
 
-                    from preset_house import Preset
-                    a = Preset(self.screen, self.seed, pos[0] + s, pos[1] + s, part_x - 2 * s, part_y - 2 * s, color,
-                               pen_color)
 
-    #                     del(a)
-    #
-    #                     else:
-    #                         self.tu.goto(pos[0] - 1, pos[1] - 1)
-    #                         self.tu.width(1)
-    #                         self.tu.pencolor(color)
-    #                         self.tu.width(1)
-    #                         self.tu.fillcolor(color)
-    #                         self.tu.down()
-    #                         self.tu.begin_fill()
-    #                         self.tu.seth(90)
-    #                         for _ in range(2):
-    #
-    #                             self.tu.forward(part_x +1)
-    #                             self.tu.right(90)
-    #                             self.tu.forward(part_y + 1)
-    #                             self.tu.right(90)
-    #                         self.tu.end_fill()
-    #
-    #
+                    a = Preset(self.screen, self.seed, pos[0] + s, pos[1] + s, part_x - 2 * s, part_y - 2 * s, color,
+                               pen_color, ra.randint(0,50))
+
+                    del(a)
+                    
     def draw_road(self, pen_width, color):
 
         nb = len(self.liste)

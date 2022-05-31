@@ -19,25 +19,25 @@
 "language" : "Langue",\
 
 "advanced_settings" : "Paramètres avancé",\
-"draw" : "dessiner",\
+"draw" : "Dessiner",\
 
-"main_frame_name" : "Main frame",\
+"main_frame_name" : "Fenètre principal",\
 
 "color_lane_marking" : "Couleur de lignes",\
 "color_road" : "Routes",\
-"color_text" : "Text",\
+"color_text" : "Texte",\
 "color_house" : "Maison",\
-"color_garden" : "Garden",\
+"color_garden" : "Jardin",\
 "color_background" : "Fond",\
 
 "size_frame_name" : "Taille",\
 "size_lane_marking" : "Lignes",\
 "size_road" : "Routes",\
-"size_text" : "Taille du text",\
+"size_text" : "Taille du texte",\
 
 "advanced_settings_frame_name" : "Paramètres avancé",\
 "seed_key" : "Graine",\
-"size_chunk" : "Taille des chunk",\
+"size_chunk" : "Taille des cases",\
 "show_perlin_noise" : "Voir le bruit de Perlin",\
 "debug_mode" : "Debug mode",\
 "octaves" : "Octaves",\

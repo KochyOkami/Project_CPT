@@ -111,7 +111,7 @@ class Main:
         # Select the language
         self.t_language = Label(self.lang_frame, text=self.settings["language"] + ': ', padx=self.padx, pady=self.pady,
                                 bg=from_rgb(self.color["settings_bg"]))
-        self.language = ttk.Combobox(self.lang_frame, values=["Français", "English", "Русский"], state="readonly")
+        self.language = ttk.Combobox(self.lang_frame, values=["Français", "English"], state="readonly")
         self.language.current(self.current_lang())
         self.language.bind("<<ComboboxSelected>>", self.forget)
 
