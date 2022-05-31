@@ -2,7 +2,7 @@
 '''
 Projet Cartographie de la plannet et de ses territoires CPT
 
-Développeurs :  Sasha Wlodaarczyk
+Développeurs :  Sasha Wlodarczyk
                 Andrew Carey
                 Artiom Filatov
 
